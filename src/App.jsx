@@ -56,7 +56,7 @@ function App() {
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 leading-tight">
              Hello<br /> 
             <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
-              I'm Vikória Budai
+              I'm Viktória Budai
             </span>
           </h1>
 
