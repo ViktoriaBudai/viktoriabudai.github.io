@@ -24,17 +24,22 @@ function App() {
       {/* --- Navigation --- */}
       <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-background/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <div className="flex animate-pulse space-x-4 text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             VB
           </div>
-          <div className="hidden md:flex space-x-8 text-sm font-medium text-gray-400">
+          <div className="hidden md:flex space-x-8 text-sm font-medium text-white-400">
             <a href="#home" className="hover:text-white transition-colors">Home</a>
-            <a href="#about" className="hover:text-white transition-colors">About</a>
-            <a href="#contact" className="hover:text-white transition-colors">Contact</a>
+            <a href="#about" className="hover:text-white transition-colors">About me</a>
+            {/*<a href="#contact" className="hover:text-white transition-colors">Contact</a>*/}
           </div>
-          <button className="bg-white/5 hover:bg-white/10 border border-white/10 px-5 py-2 rounded-full text-sm transition-all">
+          <a 
+            href="/Viktoria_Budai_CV.pdf" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="bg-secondary hover:bg-secondary/60 border border-white/10 px-5 py-2 rounded-full text-sm transition-all flex items-center gap-2"
+          >
             Resume
-          </button>
+          </a>
         </div>
       </nav>
 
@@ -49,23 +54,23 @@ function App() {
           </div>
           
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 leading-tight">
-            Hello <br /> 
+             Hello<br /> 
             <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
               I'm Vikória Budai
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-            I’m a passionate Game Development Student focusing on rogramming, 2D art and UI design. This portfolio showcases my projects, skills, and creative journey. 
+          <p className="text-lg md:text-xl text-white-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            I’m a passionate Game Development Student focusing on rogramming, 2D Art. This portfolio showcases my projects, skills, and creative journey. 
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href ="#mywork" button className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl font-semibold transition-all glow-shadow active:scale-95">
-              View My Work
+            <a href ="#mywork" className="w-full sm:w-auto bg-primary hover:bg-primary/70 text-white px-8 py-4 rounded-xl font-semibold transition-all glow-shadow active:scale-95">
+              Explore Projects
           
             </a>
-            <button className="w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/10 px-8 py-4 rounded-xl font-semibold transition-all active:scale-95">
-              Get in Touch
+            <button className="w-full sm:w-auto bg-secondary hover:bg-secondary/70 border border-white/10 px-8 py-4 rounded-xl font-semibold transition-all active:scale-95">
+              Explore Art
             </button>
           </div>
           {/* --- Social Icons Row --- */}
