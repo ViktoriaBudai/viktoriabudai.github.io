@@ -19,15 +19,15 @@ function SocialLink({ href, icon, label }) {
 
 function App() {
   return (
-    <div className="min-h-screen bg-background text-white font-sans selection:bg-primary/30">
+    <div id="home" className="min-h-screen bg-background text-white font-sans selection:bg-primary/30">
       
       {/* --- Navigation --- */}
       <nav className="fixed top-0 w-full z-50 border-b border-white/5 bg-background/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex animate-pulse space-x-4 text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <a href="#home" className="flex animate-pulse space-x-4 text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             VB
-          </div>
-          <div className="hidden md:flex space-x-8 text-sm font-medium text-white-400">
+          </a>
+          <div className="md:flex space-x-8 text-3x1 font-medium text-white-400 ">
             <a href="#home" className="hover:text-white transition-colors">Home</a>
             <a href="#about" className="hover:text-white transition-colors">About me</a>
             {/*<a href="#contact" className="hover:text-white transition-colors">Contact</a>*/}
@@ -36,7 +36,7 @@ function App() {
             href="/Viktoria_Budai_CV.pdf" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="bg-secondary hover:bg-secondary/60 border border-white/10 px-5 py-2 rounded-full text-sm transition-all flex items-center gap-2"
+            className="bg-secondary hover:bg-secondary/60 border border-white/10 px-3 py-1 rounded-full text-sm transition-all flex items-center gap-2"
           >
             Resume
           </a>
@@ -48,7 +48,7 @@ function App() {
         {/* Background Glow Effect */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] -z-10" />
 
-        <section className="max-w-4xl mx-auto text-center py-20">
+        <section className="max-w-4xl mx-auto text-center py-10">
           <div className="inline-block px-4 py-1.5 mb-6 text-sm font-medium border border-primary/30 bg-primary/10 rounded-full text-primary">
             Available for new opportunities
           </div>
@@ -75,9 +75,9 @@ function App() {
           </div>
           {/* --- Social Icons Row --- */}
           <div className="flex items-center justify-center gap-6 mt-18">
-            <SocialLink href="https://linkedin.com/in/viktoria-budai" icon={<LinkedinIcon size={20} />} label="LinkedIn" />
-            <SocialLink href="https://github.com/ViktoriaBudai" icon={<GithubIcon size={20} />} label="GitHub" />
-            <SocialLink href="mailto:viktoriabudai.dev@gmail.com" icon={<Mail size={20} />} label="Email" />
+            <SocialLink href="https://linkedin.com/in/viktoria-budai" icon={<LinkedinIcon size={32} />} label="LinkedIn" />
+            <SocialLink href="https://github.com/ViktoriaBudai" icon={<GithubIcon size={32} />} label="GitHub" />
+            <SocialLink href="mailto:viktoriabudai.dev@gmail.com" icon={<Mail size={32} />} label="Email" />
           </div>
         </section>
       </main>
