@@ -8,36 +8,44 @@ const ART = [
     {
         title: "Cyber Vagrant",
         description: "Digital line art character design inspired by cyberpunk aesthetics",
-        category: "Digital Line Art Illustration",
+        category: "Line Art",
         thumbnail: "/artgallery/cyber_vagrant.png", // main page image goes here
         gallery: ["/artgallery/cyber_vagrant.png","/artgallery/cyber_vagrant_line.png", "/artgallery/cyber_vagrant_city.png"],
         date: "2024"
 
     },
     {
-        title: "Environment Art",
-        description: "",
-        category: "Digital Line Art Illustration",
+        title: "Lines of Nature",
+        description: "My early environment drawings, beginning with basic rock studies and expanding into larger natural landscapes.",
+        category: "Environment Art",
         thumbnail: "/artgallery/canyon.png", 
         gallery: ["/artgallery/canyon.png", "/artgallery/mountain.png", "/artgallery/rock.png"],
         date: "2024"
 
     },
     {
-        title: "Vector Art",
-        description: "",
-        category: "Digital Vector Art Illustration",
+        title: "Vector World",
+        description: "Vector art created for various projects, including AR UI assets, WebGL card game elements, and object illustrations like a treasure box, telescope, and paper plane.",
+        category: "Vector Art Illustration",
         thumbnail: "/artgallery/treasure_box.png", 
-        gallery: ["/artgallery/treasure_box.png","/artgallery/telescope.png", "/artgallery/paper_plane.png", "/artgallery/AR_Welcome_UI.png"],
-        date: "2024"
+        gallery: ["/artgallery/treasure_box.png","/artgallery/telescope.png", "/artgallery/paper_plane.png", "/artgallery/AR_Welcome_UI.png", "/artgallery/cards.png"],
+        date: "2025"
     },
     {
-        title: "Pixel Art",
-        description: "",
-        category: "Digital Pixel Art Illustration",
+        title: "Mini Pixel Series",
+        description: "A progression of early pixel art studies, beginning with simple forms and gradually building toward more detailed designs.",
+        category: "Pixel Art",
         thumbnail: "/artgallery/pumpkin_head.png", 
         gallery: ["/artgallery/pumpkin_head.png", "/artgallery/tree.png", "/artgallery/sphere.png", "/artgallery/cube.png"],
         date: "2024"
+    },
+    {
+        title: "Art Explorations",
+        description: "Concept art from my first year of studies, created while I was learning digital art for the first time.",
+        category: "Concept Art",
+        thumbnail: "/artgallery/concept_racoon.png",
+        gallery: ["/artgallery/concept_racoon.png", "/artgallery/concept_weapons.png", "/artgallery/concept_magic_staff.png", "/artgallery/cartoon_racoon.png", "/artgallery/concept_sam.png", "/artgallery/concept_elysia.png"],
+        date: "2023"
     }
 ];
 
@@ -63,7 +71,7 @@ export default function Art() {
              /* Desktop Only: Glow and Hover Effects */
              hover:border-secondary/50 hover:shadow-[0_0_30px_rgba(139,92,246,0.2)]
              /* Mobile Only: Physical Tap Feedback */
-             active:scale-95 active:brightness-90 aspect-[5/3]"
+             active:scale-95 active:brightness-90 aspect-[7/9]"
           >
             <img 
               src={art.thumbnail} 

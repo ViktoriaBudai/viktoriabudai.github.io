@@ -3,6 +3,7 @@ import { GithubIcon, LinkedinIcon } from './Logos'
 import { Mail} from 'lucide-react'
 import Projects from './components/Projects';
 import Art from './components/Art';
+import AboutMe from './components/AboutMe';
 
 function SocialLink({ href, icon, label }) {
   return (
@@ -86,6 +87,12 @@ function App() {
       {/* -- PROJECTS SECTION (Imported Component) -- */}
       <Projects />
       <Art />
+
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+      </div>
+
+      <AboutMe />
 
       {/*<Footer />*/}
 
