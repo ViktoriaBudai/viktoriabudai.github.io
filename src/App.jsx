@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { GithubIcon, LinkedinIcon } from './Logos'
 import { Mail} from 'lucide-react'
 import Projects from './components/Projects';
+import Art from './components/Art';
 
 function SocialLink({ href, icon, label }) {
   return (
@@ -49,9 +50,9 @@ function App() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] -z-10" />
 
         <section className="max-w-4xl mx-auto text-center py-10">
-          <div className="inline-block px-4 py-1.5 mb-6 text-sm font-medium border border-primary/30 bg-primary/10 rounded-full text-primary">
-            Available for new opportunities
-          </div>
+          {/* <div className="inline-block px-4 py-1.5 mb-6 text-sm font-medium border border-primary/30 bg-primary/10 rounded-full text-primary">
+            Welcome
+          </div> */}
           
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 leading-tight">
              Hello<br /> 
@@ -61,7 +62,7 @@ function App() {
           </h1>
 
           <p className="text-lg md:text-xl text-white-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-            I’m a passionate Game Development Student focusing on rogramming, 2D Art. This portfolio showcases my projects, skills, and creative journey. 
+            I’m a passionate Game Developer Student focusing on Programming, 2D Art. This portfolio showcases my projects, skills, and creative journey. 
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -69,9 +70,9 @@ function App() {
               Explore Projects
           
             </a>
-            <button className="w-full sm:w-auto bg-secondary hover:bg-secondary/70 border border-white/10 px-8 py-4 rounded-xl font-semibold transition-all active:scale-95">
+            <a href="#art" className="w-full sm:w-auto bg-secondary hover:bg-secondary/70 border border-white/10 px-8 py-4 rounded-xl font-semibold transition-all active:scale-95">
               Explore Art
-            </button>
+            </a>
           </div>
           {/* --- Social Icons Row --- */}
           <div className="flex items-center justify-center gap-6 mt-18">
@@ -84,6 +85,9 @@ function App() {
 
       {/* -- PROJECTS SECTION (Imported Component) -- */}
       <Projects />
+      <Art />
+
+      {/*<Footer />*/}
 
     </div>
   )
