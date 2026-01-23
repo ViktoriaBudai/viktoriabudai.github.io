@@ -9,7 +9,7 @@ const ART = [
         title: "Cyber Vagrant",
         description: "Digital line art character design inspired by cyberpunk aesthetics",
         category: "Line Art",
-        thumbnail: "/artgallery/cyber_vagrant.png", // main page image goes here
+        thumbnail: "/artgallery/cyber_vagrant.png", 
         gallery: ["/artgallery/cyber_vagrant.png","/artgallery/cyber_vagrant_line.png", "/artgallery/cyber_vagrant_city.png"],
         date: "2024"
 

@@ -1,11 +1,5 @@
 import { useState } from 'react';
 import { ExternalLink, X} from "lucide-react";
-import FarmageddonImg from '../assets/farmageddon_image1.png'
-import FatstackImg from '../assets/fatstack_img.png'
-import TEPImg from '../assets/theenchantedpages_img.png'
-import LWImage from '../assets/lunarwoods_img.png'
-import img1 from "../assets/gallery/img1.png";
-import PortfolioImg from '../assets/portfolio_img.png'
 
 
 // project data
@@ -33,24 +27,24 @@ const PROJECTS = [
         steamLink: "https://store.steampowered.com/app/4129640/Until_the_Fields_Farmageddon/",
         gitLink: "",
         videoLink: "https://www.youtube.com/embed/Ygkoji2HrWc",
-        image: FarmageddonImg,
-        gallery: img1,
+        image: "/gallery/farmageddon_image1.png",
+        gallery: "/gallery/img1.png",
     },
     {
         title: "FatStack",
         description: "It is a strategic 2D card game developed in Unity, based on the traditional Hungarian game Zsír, but with a whimsical twist. I created everything from scrach, from the game mechanics to the visual design. This project is still in development and designed to run in browsers via WebGL.",
-        longDescription: `A solo-developed 2D Unity WebGL card game inspired by a Hungarian classic. I implemented the gameplay logic, designed the interface and created all custom card visuals using vector art in Figma. While the core gameplay rules are based on the traditional Hungarian card game Zsír, but I’m adding a few exciting twists to give it a fresh and fun feel. I’m building the entire codebase from scratch, including the digital game mechanics, scoring logic, and rule handling within Unity. I also reimagined the visual style to give the game a fresh, cartoon-inspired look while preserving the essence of the original.`,
+        longDescription: `A solo-developed 2D Unity WebGL card game inspired by a Hungarian classic. I implemented the gameplay logic, designed the interface and created all custom card visuals using vector art in Figma. While the core gameplay rules are based on the traditional Hungarian card game Zsír, but I’m adding a few exciting twists to give it a fresh and fun feel. I’m building the entire codebase from scratch, including the digital game mechanics, scoring logic, and rule handling within Unity. I also reimagined the visual style to give the game a fresh, cartoon-inspired look while preserving the essence of the original. The game is still under development.`,
         tech: ["Unity WebGL", "C#", "2D", "Krita"],
         gitLink: "https://github.com/ViktoriaBudai/FatStack",
         demoLink: "https://viktoriabudai.github.io/FatStack/",
-        image: FatstackImg,
-        gallery: ["/img3.png", "/img4.png"],
+        image: "/gallery/fatstack_img.png",
+        gallery: "/gallery/card_game_demo.png"
     },
     {
         title: "Professinal Portfolio",
         description: "Designed and built a responsive portfolio website using Vite and React to showcase my technical and artistic work.",
         tech: ["React", "JavaScript", "Vite", "GitHub Pages", "Tailwind CSS"],
-        image:PortfolioImg, 
+        image:"/gallery/portfolio_img.png", 
     },
     {
       title: "The Enchanted Pages",
@@ -59,8 +53,8 @@ const PROJECTS = [
       tech: ["Unity", "Android Mobile", "C#", "2D", "3D"],
       gitLink: "https://github.com/ViktoriaBudai/The_Enchanted_Pages",
       videoLink: "https://www.youtube.com/embed/WBz7IWYZPKE",
-      image: TEPImg,
-      gallery: ["/img5.png", "/img6.png"],
+      image: "/gallery/theenchantedpages_img.png",
+      gallery: "",
     },
     {
       title: "Lunar Woods",
@@ -69,8 +63,8 @@ const PROJECTS = [
       tech: ["Unity", "C#", "3D"],
       gitLink: "https://github.com/ViktoriaBudai/Lunar_Woods_group",
       videoLink: "https://www.youtube.com/embed/4O5j_7ZY_gw",
-      image: LWImage,
-      gallery: ["/img7.png", "/img8.png"],
+      image: "/gallery/lunarwoods_img.png",
+      gallery: "",
     },
 
 
@@ -83,11 +77,16 @@ function ProjectCard({ project, onOpenDetails }) {
   if (!project) return null;
 
   return (
-    <div className="group bg-white/10 border border-white/20 rounded-2xl overflow-hidden 
-                    hover:border-primary/50 transition-all duration-500 
-                    hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(79,70,229,0.15)]">
+    <div
+      onClick={onOpenDetails}
+      className="group bg-white/10 border border-white/20 rounded-2xl overflow-hidden 
+                    hover:border-primary/50 transition-all duration-500 cursor-pointer
+                    hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(79,70,229,0.15)]
+                    /* Mobile active state for physical feedback */
+                    active:scale-[0.98]"
+    >
       
-      {/* 1. Fixed the Scale & Transition Typos here */}
+      {/* Thumbnail Container */}
       <div className="aspect-video w-full overflow-hidden bg-white/5">
         <img
           src={project.image}
@@ -98,7 +97,7 @@ function ProjectCard({ project, onOpenDetails }) {
 
       <div className="p-6">
         {/* 2. Added a slight lift to the title on hover */}
-        <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+        <h3 className="text-xl font-bold mb-2 group-hover:text-secondary/80 transition-colors">
           {project.title}
         </h3>
         
@@ -110,8 +109,8 @@ function ProjectCard({ project, onOpenDetails }) {
           {project.tech?.map((tag) => (
             <span 
               key={tag} 
-              className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 bg-primary/10 text-primary rounded border border-primary/20 
-                         transition-colors duration-300 group-hover:bg-primary/20"
+              className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 bg-black/60 text-white rounded border border-primary/90 
+                         transition-colors duration-300 group-hover:bg-primary/50"
             >
               {tag}
             </span>
@@ -120,7 +119,7 @@ function ProjectCard({ project, onOpenDetails }) {
         
         <button 
           onClick={onOpenDetails}
-          className="mt-4 text-primary font-bold hover:underline flex items-center gap-2 cursor-pointer"
+          className="mt-4 text-white font-bold hover:underline flex items-center gap-2 cursor-pointer"
         >
           View Details <ExternalLink size={16} />
         </button>
@@ -167,7 +166,7 @@ export default function Projects() {
             {/* Close Button */}
             <button 
               onClick={() => setSelectedProject(null)}
-              className="absolute top-4 right-4 z-50 p-2 bg-black/50 rounded-full hover:bg-primary transition-colors"
+              className="absolute top-4 right-4 z-50 p-2 bg-primary/60 rounded-full hover:bg-primary/90 transition-colors"
             >
               <X size={20} />
             </button>
@@ -194,7 +193,7 @@ export default function Projects() {
               {/* Tech Stack Tags */}
               <div className="flex flex-wrap gap-2 mb-6">
                 {selectedProject.tech?.map(t => (
-                  <span key={t} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-primary">
+                  <span key={t} className="px-3 py-1 bg-primary/50 border border-white/5 rounded-full text-xs font-mono text-white">
                     {t}
                   </span>
                 ))}
@@ -205,12 +204,21 @@ export default function Projects() {
                 {selectedProject.longDescription || selectedProject.description}
               </p>
 
-              <div>
-                <img src={selectedProject.gallery} className="w-full h-full object-cover" alt="Project Preview" />
-              </div>
+              {selectedProject.gallery && selectedProject.gallery.length > 0 && (
+                <div className="grid grid-cols-1 gap-4 mt-8">
+                  {/* If it's an array, you would map through it here */}
+                  {Array.isArray(selectedProject.gallery) ? (
+                    selectedProject.gallery.map((img, idx) => (
+                      <img key={idx} src={img} className="rounded-xl" alt="Preview" />
+                    ))
+                  ) : (
+                    <img src={selectedProject.gallery} className="rounded-xl" alt="Preview" />
+                  )}
+                </div>
+              )}
               
               {/* ACTION BUTTONS (Only show if they exist in the data) */}
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-8 mt-8">
                 {selectedProject.demoLink && (
                   <a 
                     href={selectedProject.demoLink} 

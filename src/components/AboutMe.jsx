@@ -5,6 +5,24 @@ export default function AboutMe() {
   return (
     <section id="about" className="max-w-7xl mx-auto px-6 pt-64 croll-mt-20 pb-32 min-h-[80vh] border-t border-white/5">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        {/* --- IMAGE SIDE --- */}
+        <div className="relative group mx-auto lg:mx-0">
+          {/* Decorative Glow behind the image */}
+          <div className="absolute -inset-4 bg-linear-to-r from-primary/30 to-secondary/30 blur-2xl rounded-full opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+          
+          {/* The Image Container */}
+          <div className="max-w-[384px] w-full mx-auto rounded-3xl overflow-hidden border border-white/10 group-hover:rotate-0 transition-transform duration-500 bg-[#161b22]">
+            <img 
+              src="/profile/profile.jpg" 
+              alt="Profile"
+              className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-500"
+              style={{ imageRendering: 'high-quality' }}
+            />
+          </div>
+        </div>
+
+    
         
         {/* Left side: About Me */}
         <div className="space-y-8">
@@ -12,7 +30,7 @@ export default function AboutMe() {
             <h2 className="text-4xl font-bold mb-4 flex items-center gap-4">
               <User className="text-primary" /> About Me
             </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"></div>
+            <div className="w-20 h-1 bg-linear-to-r from-primary to-secondary rounded-full"></div>
           </div>
 
           <div className="space-y-6 text-gray-400 text-lg leading-relaxed">
