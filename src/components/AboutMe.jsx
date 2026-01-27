@@ -64,7 +64,7 @@ export default function AboutMe() {
         {/* Right side: My skills*/}
         <div className="relative">
           {/* Decorative Background Glow */}
-          <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 to-secondary/10 blur-2xl rounded-full"></div>
+          <div className="absolute -inset-4 bg-linear-to-r from-primary/10 to-secondary/10 blur-2xl rounded-full"></div>
           
           <div className="relative bg-[#161b22] border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl">
             <h3 className="text-2xl font-bold mb-8 flex items-center gap-2">

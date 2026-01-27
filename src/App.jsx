@@ -57,7 +57,7 @@ function App() {
           
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 leading-tight">
              Hello<br /> 
-            <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
               I'm Viktória Budai
             </span>
           </h1>
@@ -89,7 +89,7 @@ function App() {
       <Art />
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+        <div className="h-px w-full bg-linear-to-r from-transparent via-white/10 to-transparent"></div>
       </div>
 
       <AboutMe />

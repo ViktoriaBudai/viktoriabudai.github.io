@@ -71,7 +71,7 @@ export default function Art() {
              /* Desktop Only: Glow and Hover Effects */
              hover:border-secondary/50 hover:shadow-[0_0_30px_rgba(139,92,246,0.2)]
              /* Mobile Only: Physical Tap Feedback */
-             active:scale-95 active:brightness-90 aspect-[7/9]"
+             active:scale-95 active:brightness-90 aspect-7/9"
           >
             <img 
               src={art.thumbnail} 
@@ -79,7 +79,7 @@ export default function Art() {
               alt={art.title}
             />
             {/* Hover Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent 
+            <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/20 to-transparent 
                             p-6 flex flex-col justify-end
                             /* 1. Hidden by default */
                             opacity-0 

@@ -1,74 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ExternalLink, X} from "lucide-react";
+import { PROJECTS } from '../data/projectsData';
 
-
-// project data
-
-const PROJECTS = [
-    {
-        title: "Until the Fields: Farmageddon",
-        description: "A cozy 3D puzzle‑platformer where you play as different animals, each with unique abilities. Work together with your animal friends to escape the barn and find your way out of the farm.",
-        longDescription: `
-        Project Description
-
-        This was a school project where our team created a 3D puzzle‑platformer game in Unity. The main idea was that the player can switch between three different animals, each with their own abilities, and use them to solve different puzzles. You can only control one animal at a time, so the challenge is figuring out which one you need in each situation.
-        The project was developed over a four‑month period.
-        
-        My Role
-
-        • Spider mechanics (swinging, web pulling)
-        • Level design contributions
-        • Puzzle ideas (catapult, moving platforms, swing points, plug‑out mechanics)
-        • Narrative design (prologue + background story)
-        • Storybook illustrations
-        • Storybook code for turning page and UI integration based on the input device`,
-
-        tech: ["Unity", "C#", "3D", "Krita"],
-        steamLink: "https://store.steampowered.com/app/4129640/Until_the_Fields_Farmageddon/",
-        gitLink: "",
-        videoLink: "https://www.youtube.com/embed/Ygkoji2HrWc",
-        image: "/gallery/farmageddon_image1.png",
-        gallery: "/gallery/img1.png",
-    },
-    {
-        title: "FatStack",
-        description: "It is a strategic 2D card game developed in Unity, based on the traditional Hungarian game Zsír, but with a whimsical twist. I created everything from scrach, from the game mechanics to the visual design. This project is still in development and designed to run in browsers via WebGL.",
-        longDescription: `A solo-developed 2D Unity WebGL card game inspired by a Hungarian classic. I implemented the gameplay logic, designed the interface and created all custom card visuals using vector art in Figma. While the core gameplay rules are based on the traditional Hungarian card game Zsír, but I’m adding a few exciting twists to give it a fresh and fun feel. I’m building the entire codebase from scratch, including the digital game mechanics, scoring logic, and rule handling within Unity. I also reimagined the visual style to give the game a fresh, cartoon-inspired look while preserving the essence of the original. The game is still under development.`,
-        tech: ["Unity WebGL", "C#", "2D", "Krita"],
-        gitLink: "https://github.com/ViktoriaBudai/FatStack",
-        demoLink: "https://viktoriabudai.github.io/FatStack/",
-        image: "/gallery/fatstack_img.png",
-        gallery: "/gallery/card_game_demo.png"
-    },
-    {
-        title: "Professinal Portfolio",
-        description: "Designed and built a responsive portfolio website using Vite and React to showcase my technical and artistic work.",
-        tech: ["React", "JavaScript", "Vite", "GitHub Pages", "Tailwind CSS"],
-        image:"/gallery/portfolio_img.png", 
-    },
-    {
-      title: "The Enchanted Pages",
-      description: "An Android mobile game built in Unity. The game blends visual novel storytelling, puzzle mechanics, and a 3D explorable environment. Players inherit a mysterious bookshop and follow cryptic clues left in an old journal, uncovering enchanted books, solving environmental puzzles, and unraveling the magical history of their family.",
-      longDescription: "",
-      tech: ["Unity", "Android Mobile", "C#", "2D", "3D"],
-      gitLink: "https://github.com/ViktoriaBudai/The_Enchanted_Pages",
-      videoLink: "https://www.youtube.com/embed/WBz7IWYZPKE",
-      image: "/gallery/theenchantedpages_img.png",
-      gallery: "",
-    },
-    {
-      title: "Lunar Woods",
-      description: "A first‑year Unity project where our team created a small 3D fantasy adventure demo game. Players take on the role of the last surviving Fairy in a fading forest, completing NPC quests, earning rewards, and uncovering the mystery behind the forest’s decay and their own forgotten identity.",
-      longDescription: "",
-      tech: ["Unity", "C#", "3D"],
-      gitLink: "https://github.com/ViktoriaBudai/Lunar_Woods_group",
-      videoLink: "https://www.youtube.com/embed/4O5j_7ZY_gw",
-      image: "/gallery/lunarwoods_img.png",
-      gallery: "",
-    },
-
-
-];
 
 // the internal card component
 
@@ -95,7 +28,16 @@ function ProjectCard({ project, onOpenDetails }) {
         />
       </div>
 
+      {/*My project role*/}
       <div className="p-6">
+      {project.roles && (
+        <p className="text-[10px] text-secondary font-bold uppercase tracking-widest mb-1 opacity-80">
+          {project.roles.join(" • ")}
+        </p>
+      )}
+      
+
+      
         {/* 2. Added a slight lift to the title on hover */}
         <h3 className="text-xl font-bold mb-2 group-hover:text-secondary/80 transition-colors">
           {project.title}
@@ -128,11 +70,46 @@ function ProjectCard({ project, onOpenDetails }) {
   );
 }
 
-// the main section component, the export
+// the main section component, the export / Modal content section
 
 export default function Projects() {
-  // 1. State to track the open project
+  // State to track the open project
   const [selectedProject, setSelectedProject] = useState(null);
+  // Overview will be the default view
+  const [activeSection, setActiveSection] = useState('overview');
+
+  // Ref for the scrollable Modal box
+  const modalScrollRef = useRef(null);
+
+  // Intersection observer logic
+  useEffect(() => {
+    if (!selectedProject || !modalScrollRef.current) return;
+
+    const options = {
+      root: modalScrollRef.current, // Watch scrolling inside the modal
+      rootMargin: '-10% 0px -70% 0px', // Adjusts when the "active" switch happens
+      threshold: 0,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, options);
+
+    // Grab all sections with an ID within the modal
+    const sections = modalScrollRef.current.querySelectorAll('section[id]');
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, [selectedProject]);
+
+  const handleOpenDetails = (project) => {
+    setSelectedProject(project);
+    setActiveSection('overview');
+  };
 
   return (
     <section id="mywork" className="max-w-7xl mx-auto px-6 py-24 relative">
@@ -146,7 +123,7 @@ export default function Projects() {
           <ProjectCard 
             key={index} 
             project={project} 
-            onOpenDetails={() => setSelectedProject(project)} 
+            onOpenDetails={() => handleOpenDetails(project)} 
           />
         ))}
       </div>
@@ -154,68 +131,140 @@ export default function Projects() {
       {/* --- THE MODAL OVERLAY --- */}
       {selectedProject && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-          {/* 1. Backdrop */}
           <div 
             className="absolute inset-0 bg-background/95 backdrop-blur-sm"
             onClick={() => setSelectedProject(null)}
           ></div>
 
-          {/* 2. Modal Box - Increased max-width for better media display */}
-          <div className="relative bg-[#161b22] border border-white/20 w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl flex flex-col animate-in fade-in zoom-in duration-300">
+          {/* 3. The Modal Box (Container) - Added ref={modalScrollRef} */}
+          <div 
+            ref={modalScrollRef}
+            className="relative bg-[#161b22] border border-white/20 w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl flex flex-col animate-in fade-in zoom-in duration-300 scroll-smooth"
+          >
             
-            {/* Close Button */}
             <button 
               onClick={() => setSelectedProject(null)}
-              className="absolute top-4 right-4 z-50 p-2 bg-primary/60 rounded-full hover:bg-primary/90 transition-colors"
+              className="absolute top-4 right-4 z-50 p-2 bg-primary/60 rounded-full hover:bg-primary/90 transition-colors text-white"
             >
               <X size={20} />
             </button>
 
-            {/* Top Section: Multimedia (Video or Image) */}
-            <div className="w-full bg-black/40 aspect-video">
+            {/* Media Section */}
+            <div className="w-full bg-black/40 aspect-video shrink-0">
               {selectedProject.videoLink ? (
-                <iframe 
-                  src={selectedProject.videoLink}
-                  className="w-full h-full"
-                  title="Project Video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
+                <iframe src={selectedProject.videoLink} className="w-full h-full" title="Project Video" allowFullScreen></iframe>
               ) : (
                 <img src={selectedProject.image} className="w-full h-full object-cover" alt="Project Preview" />
               )}
             </div>
 
-            {/* Bottom Section: Details */}
-            <div className="p-8 md:p-12">
-              <h2 className="text-4xl font-bold mb-4">{selectedProject.title}</h2>
-              
-              {/* Tech Stack Tags */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                {selectedProject.tech?.map(t => (
-                  <span key={t} className="px-3 py-1 bg-primary/50 border border-white/5 rounded-full text-xs font-mono text-white">
-                    {t}
-                  </span>
-                ))}
-              </div>
+            <div className="p-8 md:p-12 relative">
 
-              <p className="text-gray-400 mb-10 text-lg leading-relaxed mb-8 whitespace-pre-line">
-                {/* We use 'longDescription' if it exists, otherwise fall back to regular description */}
-                {selectedProject.longDescription || selectedProject.description}
-              </p>
-
-              {selectedProject.gallery && selectedProject.gallery.length > 0 && (
-                <div className="grid grid-cols-1 gap-4 mt-8">
-                  {/* If it's an array, you would map through it here */}
-                  {Array.isArray(selectedProject.gallery) ? (
-                    selectedProject.gallery.map((img, idx) => (
-                      <img key={idx} src={img} className="rounded-xl" alt="Preview" />
-                    ))
-                  ) : (
-                    <img src={selectedProject.gallery} className="rounded-xl" alt="Preview" />
-                  )}
+              {/* 1. FLOATING STEAM BADGE */}
+              {selectedProject.steamLink && (
+                <div className="hidden lg:block absolute top-12 right-12 z-10">
+                  <a 
+                    href={selectedProject.steamLink} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="group flex flex-col items-center justify-center p-4 rounded-2xl bg-[#1b2838]/80 border border-[#66c0f4]/30 hover:border-[#66c0f4] hover:bg-[#1b2838] transition-all duration-300 shadow-2xl"
+                  >
+                    <img src="/icons/steam.svg" alt="Steam" className="w-12 h-12 drop-shadow-[0_0_10px_rgba(102,192,244,0.4)] group-hover:scale-110 transition-transform" />
+                    <span className="text-[10px] font-black text-[#66c0f4] uppercase tracking-widest mt-2">Steam Page</span>
+                  </a>
                 </div>
               )}
+
+              {/* 2. HEADER */}
+              <header className="mb-10 pr-0 lg:pr-40"> 
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">{selectedProject.title}</h2>
+                <div className="flex flex-wrap gap-2">
+                  {selectedProject.tech?.map(t => (
+                    <span key={t} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] font-mono text-gray-400">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </header>
+
+
+              {/* --- STICKY SUB-NAV --- */}
+              <div className="sticky top-0 z-40 bg-[#161b22]/90 backdrop-blur-md border-b border-white/10 py-4 -mx-8 md:-mx-12 px-8 md:px-12 mb-12">
+                <div className="flex flex-wrap gap-6 overflow-x-auto no-scrollbar">
+                  
+                  {/* Overview Link */}
+                  <a 
+                    href="#overview" 
+                    className={`text-sm font-bold transition-colors ${activeSection === 'overview' ? 'text-primary' : 'text-gray-400 hover:text-white'}`}
+                  >
+                    Overview
+                    {activeSection === 'overview' && <div className="h-0.5 w-full bg-primary mt-1 animate-in slide-in-from-left-2" />}
+                  </a>
+
+                  {selectedProject.roles?.map((role) => {
+                    const id = role.replace(/\s+/g, '-').toLowerCase();
+                    const isActive = activeSection === id;
+                    return (
+                      <a 
+                        key={role} 
+                        href={`#${id}`} 
+                        className={`text-sm font-bold transition-colors flex flex-col ${isActive ? 'text-secondary' : 'text-gray-400 hover:text-secondary'}`}
+                      >
+                        <div className="flex items-center gap-2">
+                          <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-secondary animate-pulse' : 'bg-gray-600'}`}></span>
+                          {role}
+                        </div>
+                        {isActive && <div className="h-0.5 w-full bg-secondary mt-1 animate-in slide-in-from-left-2" />}
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+
+              
+
+              {/* --- SCROLLABLE CONTENT --- */}
+              <div className="space-y-24">
+                
+                <section id="overview" className="scroll-mt-32">
+                  <h3 className="text-2xl font-bold mb-6">Project Overview</h3>
+                  <p className="text-gray-400 text-lg leading-relaxed whitespace-pre-line">
+                    {selectedProject.longDescription || selectedProject.description}
+                  </p>
+                </section>
+
+                {selectedProject.roles?.map((role) => (
+                  <section 
+                    key={role} 
+                    id={role.replace(/\s+/g, '-').toLowerCase()} 
+                    className="scroll-mt-32 border-t border-white/5 pt-16"
+                  >
+                    <div className="flex items-center gap-4 mb-8 ">
+                      <h3 className="text-2xl font-bold text-secondary uppercase tracking-wider">{role}</h3>
+                      <div className="h-px flex-1 bg-linear-to-r from-secondary/50 to-transparent"></div>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 whitespace-pre-line">
+                      <div>
+                        <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                          {selectedProject.roleDetails?.[role]?.info || "Details coming soon..."}
+                        </p>
+                      </div>
+
+                      <div className="space-y-4">
+                        {selectedProject.roleDetails?.[role]?.images?.map((img, i) => (
+                          <img 
+                            key={i} 
+                            src={img} 
+                            className="rounded-2xl border border-white/10 shadow-xl" 
+                            alt={`${role} sample`} 
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </section>
+                ))}
+              </div>
               
               {/* ACTION BUTTONS (Only show if they exist in the data) */}
               <div className="flex flex-wrap gap-8 mt-8">
