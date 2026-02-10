@@ -6,6 +6,14 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const ART = [
     {
+        title: "Farmageddon Storybook",
+        description: "Digital line art for the Storybook of Until the Fields: Farmageddon 3D puzzle platformer game.",
+        category: "Line Art",
+        thumbnail: "/artgallery/page1.png", 
+        gallery: ["/gallery/page5.png", "/artgallery/page8.png", "/artgallery/page9.png", "/artgallery/page10.png", "/gallery/mouse.png"],
+        date: "2025"
+    },
+    {
         title: "Cyber Vagrant",
         description: "Digital line art character design inspired by cyberpunk aesthetics",
         category: "Line Art",

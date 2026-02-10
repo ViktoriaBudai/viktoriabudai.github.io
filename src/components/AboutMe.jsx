@@ -36,13 +36,13 @@ export default function AboutMe() {
           <div className="space-y-6 text-gray-400 text-lg leading-relaxed">
             <p>
               I'm a <span className="text-white font-semibold">Game Developer student</span> with a 
-              passion for <span className="text-secondary font-semibold">Programming and Digital Art</span>. 
+              passion for <span className="text-secondary font-semibold">Programming and Art</span>. 
               I find the most joy at the intersection of complex logic and beautiful design.
             </p>
             <p>
-              My journey started with drawing for papers and play video games, 
-              and it naturally evolved into building interactive experiences. I don't just 
-              code - I create digital worlds.
+              My interest in art started early. As a kid, I spent hours drawing, painting, and getting lost in video games. That early curiosity grew into a passion for creating worlds of my own.
+              Today, I’m studying Game Development and exploring both the artistic and technical sides of the craft.
+              Whether I’m making 2D art or writing code, I’m focused on crafting experiences that are visually engaging and fun to explore.
             </p>
           </div>
 
@@ -51,12 +51,12 @@ export default function AboutMe() {
             <div className="p-4 bg-white/5 rounded-2xl border border-white/10 flex-1">
               <Code2 className="text-primary mb-2" />
               <h4 className="font-bold">Logic</h4>
-              <p className="text-xs text-gray-500">Problem solving & Architecture</p>
+              <p className="text-s text-gray-400">Problem solving & Architecture</p>
             </div>
             <div className="p-4 bg-white/5 rounded-2xl border border-white/10 flex-1">
               <Palette className="text-secondary mb-2" />
               <h4 className="font-bold">Creativity</h4>
-              <p className="text-xs text-gray-500">Visuals & User Experience</p>
+              <p className="text-s text-gray-400">Visuals & User Experience</p>
             </div>
           </div>
         </div>
@@ -74,10 +74,10 @@ export default function AboutMe() {
             <div className="space-y-8">
               {/* Dev Skills */}
               <div>
-                <p className="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">Development</p>
+                <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Development</p>
                 <div className="flex flex-wrap gap-2">
                   {['C#', 'Unity','React', 'Tailwind', 'JavaScript', 'Python', 'Kotlin', 'Android', 'Expo', 'Next.js', ].map(skill => (
-                    <span key={skill} className="px-3 py-1 bg-primary/5 border border-primary/20 text-primary rounded-lg text-sm">
+                    <span key={skill} className="px-3 py-1 bg-black/40 border border-primary/60 text-primary rounded-lg text-sm">
                       {skill}
                     </span>
                   ))}
@@ -86,7 +86,7 @@ export default function AboutMe() {
 
               {/* Art Skills */}
               <div>
-                <p className="text-sm font-bold text-gray-500 uppercase tracking-widest mb-4">Art & Design</p>
+                <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Art & Design</p>
                 <div className="flex flex-wrap gap-2">
                   {['Krita', 'Figma', 'Adobe Photoshop', 'Adobe Illustrator', 'UI/UX'].map(skill => (
                     <span key={skill} className="px-3 py-1 bg-secondary/5 border border-secondary/20 text-secondary rounded-lg text-sm">

@@ -31,7 +31,7 @@ function ProjectCard({ project, onOpenDetails }) {
       {/*My project role*/}
       <div className="p-6">
       {project.roles && (
-        <p className="text-[10px] text-secondary font-bold uppercase tracking-widest mb-1 opacity-80">
+        <p className="text-[12px] text-secondary font-bold uppercase tracking-widest mb-1 opacity-80">
           {project.roles.join(" • ")}
         </p>
       )}
@@ -180,7 +180,7 @@ export default function Projects() {
                 <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">{selectedProject.title}</h2>
                 <div className="flex flex-wrap gap-2">
                   {selectedProject.tech?.map(t => (
-                    <span key={t} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[10px] font-mono text-gray-400">
+                    <span key={t} className="px-3 py-1 bg-secondary/20 border border-white/10 rounded-full text-[16px] font-mono text-gray-200">
                       {t}
                     </span>
                   ))}
